@@ -32,7 +32,7 @@ Stock, scan code-barres, Open Food Facts, grammages / unités / conversions, dé
 **Git** : deux dépôts indépendants, `planeat-api-new` et `planeat-app-new` (GitHub `QuentinMoulliet`). Les anciens dépôts `planeat-api` / `planeat-app` restent intacts.
 
 **Prod** : remplace l'ancienne app.
-- App : `https://planeat-app.navity.aero`
+- App : `https://planeat.navity.aero`
 - API : `https://planeat-api.navity.aero`
 
 ---

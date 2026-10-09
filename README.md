@@ -238,7 +238,7 @@ APP_DEBUG=0
 APP_SECRET=<clé>
 DATABASE_URL=<url_bdd_prod>
 DEFAULT_URI=https://planeat-api.navity.aero
-CORS_ALLOW_ORIGIN='^https://planeat-app\.navity\.aero$'
+CORS_ALLOW_ORIGIN='^https://planeat\.navity\.aero$'
 JWT_PASSPHRASE=<passphrase>
 ```
 
@@ -270,8 +270,8 @@ Les logs d'erreur partent sur `php://stderr` (log Apache).
     </Directory>
 
     SSLEngine on
-    SSLCertificateFile /etc/letsencrypt/live/planeat-api.navity.aero/fullchain.pem
-    SSLCertificateKeyFile /etc/letsencrypt/live/planeat-api.navity.aero/privkey.pem
+    SSLCertificateFile /etc/letsencrypt/live/navity.aero/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/navity.aero/privkey.pem
 
     ErrorLog ${APACHE_LOG_DIR}/planeat_api_error.log
     CustomLog ${APACHE_LOG_DIR}/planeat_api_access.log combined
