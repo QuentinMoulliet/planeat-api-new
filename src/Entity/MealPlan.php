@@ -31,7 +31,6 @@ class MealPlan
 
     /** @var Collection<int, PlannedMeal> */
     #[ORM\OneToMany(targetEntity: PlannedMeal::class, mappedBy: 'mealPlan', cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[ORM\OrderBy(['date' => 'ASC', 'slot' => 'DESC'])]
     private Collection $plannedMeals;
 
     #[ORM\Column]
@@ -95,6 +94,18 @@ class MealPlan
     public function getPlannedMeals(): Collection
     {
         return $this->plannedMeals;
+    }
+
+    /**
+     * @return PlannedMeal[] Chronological order, lunch before dinner
+     */
+    public function getSortedPlannedMeals(): array
+    {
+        $slots = $this->plannedMeals->toArray();
+        usort($slots, fn(PlannedMeal $a, PlannedMeal $b) => [$a->getDate(), array_search($a->getSlot(), PlannedMeal::SLOTS)]
+            <=> [$b->getDate(), array_search($b->getSlot(), PlannedMeal::SLOTS)]);
+
+        return $slots;
     }
 
     public function addPlannedMeal(PlannedMeal $plannedMeal): static

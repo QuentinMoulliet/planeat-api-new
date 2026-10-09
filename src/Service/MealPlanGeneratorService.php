@@ -74,7 +74,7 @@ class MealPlanGeneratorService
      */
     public function shuffle(MealPlan $mealPlan, \DateTimeImmutable $today): void
     {
-        $slots = $this->sortedSlots($mealPlan);
+        $slots = $mealPlan->getSortedPlannedMeals();
 
         $toFill = [];
         foreach ($slots as $index => $slot) {
@@ -187,17 +187,5 @@ class MealPlanGeneratorService
     private function weekOf(\DateTimeImmutable $startDate, \DateTimeImmutable $date): int
     {
         return intdiv((int) $startDate->diff($date)->days, 7);
-    }
-
-    /**
-     * @return PlannedMeal[] Chronological order, lunch before dinner
-     */
-    private function sortedSlots(MealPlan $mealPlan): array
-    {
-        $slots = $mealPlan->getPlannedMeals()->toArray();
-        usort($slots, fn(PlannedMeal $a, PlannedMeal $b) => [$a->getDate(), array_search($a->getSlot(), PlannedMeal::SLOTS)]
-            <=> [$b->getDate(), array_search($b->getSlot(), PlannedMeal::SLOTS)]);
-
-        return $slots;
     }
 }

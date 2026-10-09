@@ -87,7 +87,7 @@ class ApiPresenter
         ];
 
         if ($withSlots) {
-            $data['plannedMeals'] = array_map($this->plannedMeal(...), $mealPlan->getPlannedMeals()->toArray());
+            $data['plannedMeals'] = array_map($this->plannedMeal(...), $mealPlan->getSortedPlannedMeals());
         }
 
         return $data;
